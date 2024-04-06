@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 from time import sleep
 import json, os
 
@@ -15,19 +16,9 @@ driver = webdriver.Chrome(options = options)
 
 driver.get('https://www.glassdoor.com.br')
 
-def save_cookies(driver):
-    #get cookies from session 
-    #Use it after login to save the coockies
-    coockies = driver.get_cookies()
-
-    #Store cookies in a file
-    with open('cookies.json', 'w') as file:
-        json.dump(coockies, file)
-    print('Cookies salvos com sucesso!')
-
 def login(driver):
-    email = ""
-    senha = ""
+
+
     try:
         element = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/section[1]/div[2]/div/div/div[1]/div/div/div/div/form/div[1]/div/div[1]/input"))
@@ -50,20 +41,11 @@ def login(driver):
     login_button = driver.find_element(By.XPATH, "/html/body/div[2]/section[1]/div[2]/div/div/div[1]/div/div/div/div/form/div[2]/button")
     login_button.click()
 
-
-    save_cookies(driver)
-
-"""def load_cookies():
-    if 'cookies.json' in os.listdir():
-        with open('cookies.json', 'r') as file:
-            cookies = json.load(file)
-
-        for cookie in cookies:
-            driver.add_cookie(cookie)
-
-        driver.refresh()        
-    else:
-        login(driver=driver)
-"""
 if __name__ == "__main__":
-    login(driver=driver)
+    login(driver)
+    sleep(10)
+    search_field = driver.find_element(By.XPATH, "/html/body/div[3]/div[1]/div[1]/form/div[2]/div[1]/div/input")
+    search_field.send_keys("estágio em engenharia química")
+    local = driver.find_element(By.XPATH, "/html/body/div[3]/div[1]/div[1]/form/div[2]/div[2]/div/input")
+    local.send_keys("Rio de Janeiro")
+    search_field.send_keys(Keys.ENTER)
