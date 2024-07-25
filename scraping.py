@@ -76,7 +76,7 @@ def get_vagas(email, senha):
         except:
             company = ""
 
-        link = driver.find_element(By.XPATH, "/html/body/div[3]/div[1]/div[4]/div[2]/div[1]/div[2]/ul/li[3]/div/div/div[1]/div[1]/div[1]").get_attribute("href")
+        link = element.find_element(By.CLASS_NAME,"JobCard_jobCardContainer___hKKI").find_element(By.TAG_NAME, 'a').get_attribute('href')
         vaga = Vagas.Vagas(title.text, description.text, company, link)
         lista_vagas.append(vaga)
         sleep(5)

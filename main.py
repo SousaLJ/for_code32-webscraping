@@ -3,7 +3,8 @@ from util import google_sheets_util as gs
 import pandas as pd
 from scraping import get_vagas
 
-
+email = ""
+senha = ""
 
 lista_vagas = get_vagas(email, senha)
 
