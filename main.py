@@ -1,10 +1,9 @@
-from model import Vagas
-from util import google_sheets_util as gs
 import pandas as pd
+from model import Vagas
 from scraping import get_vagas
 
-email = ""
-senha = ""
+email = "estagiosforcode@gmail.com"
+senha = "F0rC0d3Estagio5"
 
 lista_vagas = get_vagas(email, senha)
 

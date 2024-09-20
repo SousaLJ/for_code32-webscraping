@@ -15,3 +15,4 @@ class Vagas:
             'Empresa': self.empresa,
             'Link': self.link
         }
+    

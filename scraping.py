@@ -25,10 +25,11 @@ def login(driver, email, senha):
         print("Elemento não carregou")
 
     sleep(3)
-    email_field.send_keys(email)
 
+    email_field.send_keys(email) 
     email_login_button = driver.find_element(By.XPATH, "/html/body/div[2]/section[1]/div[2]/div/div/div[1]/div/div/div/div/form/div[2]/button")
     email_login_button.click()
+
     sleep(3)
 
     password_field = driver.find_element(By.XPATH, "/html/body/div[2]/section[1]/div[2]/div/div/div[1]/div/div/div/div/form/div[1]/div[1]/div/div[1]/input")
@@ -36,7 +37,6 @@ def login(driver, email, senha):
 
     login_button = driver.find_element(By.XPATH, "/html/body/div[2]/section[1]/div[2]/div/div/div[1]/div/div/div/div/form/div[2]/button")
     login_button.click()
-
 
 
 def get_vagas(email, senha):
@@ -66,7 +66,7 @@ def get_vagas(email, senha):
     for element in elements:
         element.click()
 
-        title = driver.find_element(By.XPATH, "/html/body/div[3]/div[1]/div[4]/div[2]/div[2]/div/div[1]/header/div[1]/h1")
+        title = driver.find_element(By.XPATH, "/html/body/div[3]/div[1]/div[4]/div/div[2]/div/div[1]/header/div[1]/h1")
 
         try:
             description = WebDriverWait(driver, 10).until(
